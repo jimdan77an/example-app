@@ -1,0 +1,1 @@
+Conctacto de: {{$nombre}}<br/>{{$email}}<br/>{{$mensaje}}<br/>
