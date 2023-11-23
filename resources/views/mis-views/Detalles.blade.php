@@ -86,6 +86,22 @@
             <h1 style="color: #880E4F;">{{$Producto->nombre}}</h1>
             <p>{{$Producto->detalles}}</p>
             <img src="{{$Producto->imagen}}" />
+            
+   @auth
+        {{$cantidad}}
+        @if($cantidad>0)
+
+            <a href="/carrito/agregar/{{$Producto->idProductos}}"><button>
+                   +
+                </button></a>
+            <a href="/carrito/eliminar/{{$Producto->idProductos}}"><button>-</button></a>
+        @else
+            <a href="/carrito/agregar/{{$Producto->idProductos}}"><button>
+                +
+            </button></a>
+        @endif
+
+    @endauth 
         </div>
     </div> 
    

@@ -14,7 +14,7 @@
 <body>    
 	<div class = "full-container"></br></br>
 		<div class = "header">
-		    <img class="imgheader" src="http://localhost/example-app/public/imagenes/icono.png?t=". time();><h1> Music Shop </h1>  
+		    <img class="imgheader" src="http://localhost/example-app/public/imagenes/icono.png?t=". time();><h1> Fashion Luce </h1>  
 		</div>
         <nav>
         <ul class = "menu-h">

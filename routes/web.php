@@ -55,6 +55,8 @@ Route ::get('/categorias', [CategoriasController::class, 'index']);
 Route ::get('/categoria/{idCategorias}', [CategoriasController::class, 'view']);
 
 Route ::get('/Sucursales', [SucursalesController::class, 'index']);
+Route ::get('/carrito/agregar/{idProductos}', [CarritoController::class, 'agregar']);
+Route ::get('/carrito/eliminar/{idProductos}', [CarritoController::class, 'eliminar']);
 
 /*Route ::get('/Direcciones', [DireccionesController::class, 'index']);*/
 Route ::get('/Detalles/{idProductos}', [CategoriasController::class, 'detalles']);

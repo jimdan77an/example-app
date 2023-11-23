@@ -14,19 +14,19 @@ class CarritoController extends Controller
 {
     public function agregar($id){
         $producto = Productos::find($id);
-        $userId = Auth::id();
-        $carrito = Carrito::obtenerCarrito($userId);
-        $idCarrito = $carrito->id;        
+        $idUsuarios = Auth::id();
+        $carrito = Carrito::obtenerCarrito($idUsuarios);
+        $idCarrito = $carrito->idCarrito;        
         $detalle = DetalleCarrito::obtenerDetalle($idCarrito, $id, 0);
         $detalle->cantidad = $detalle->cantidad +1;
         $detalle->save();
-        return redirect('/categorias/' . $producto->id_categoria);
+        return redirect()->back();
     }
     public function eliminar($id){
         $producto = Productos::find($id);
-        $userId = Auth::id();
-        $carrito = Carrito::obtenerCarrito($userId);
-        $idCarrito = $carrito->id;        
+        $idUsuarios = Auth::id();
+        $carrito = Carrito::obtenerCarrito($idUsuarios);
+        $idCarrito = $carrito->idCarrito;        
         $detalle = DetalleCarrito::obtenerDetalle($idCarrito, $id);
         $detalle->cantidad = $detalle->cantidad -1;
         if($detalle->cantidad <=0){
@@ -36,7 +36,7 @@ class CarritoController extends Controller
             $detalle->save();
         }
 
-        return redirect('/categorias/' . $producto->id_categoria);
+        return redirect()->back();
     }
 
 

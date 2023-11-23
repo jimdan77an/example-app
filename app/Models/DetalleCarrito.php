@@ -9,17 +9,20 @@ class DetalleCarrito extends Model
 {
     use HasFactory;
     protected $table="detalles_carritos";
+    protected $primaryKey = 'idDetalleCarrito';
 
-    static function obtenerDetalle($idCarrito, $idProducto, $cantidadPorDefecto = -1){
-        $detalle = DetalleCarrito::where('id_carrito', $idCarrito)->where('id_producto', $idProducto)->first();
+    static function obtenerDetalle($idCarrito, $idProducto, $cantidadPorDefecto = 0){
+        $detalle = DetalleCarrito::where('idCarritos', $idCarrito)->where('idProductos', $idProducto)->first();
         if($detalle == null){
             $detalle = new DetalleCarrito();
-            $detalle->id_carrito = $idCarrito;
-            $detalle->id_producto = $idProducto;
-            if($cantidadPorDefecto != -1){
+            $detalle->idCarritos = $idCarrito;
+            $detalle->idProductos = $idProducto;
+            
                 $detalle->cantidad = $cantidadPorDefecto;
+                $producto=Productos::find($idProducto);
+                $detalle->precio = $producto->precio;
                 $detalle->save();
-            }
+            
         }
         return $detalle;
     }
