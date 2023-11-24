@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\SucursalesController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PaypalController;
+use App\Http\Controllers\DireccionesController;
 use App\Http\Controllers\CarritoController;
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
@@ -45,28 +46,49 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 use App\Http\Controllers\ContactoController;
+
 Route::get('/contacto', [ContactoController::class, 'index']);
 Route::post('/contacto', [ContactoController::class, 'send']);
 Route::get('/contactado', [ContactoController::class, 'contacted'])->name('contactado');
 
-Route ::get('/categorias', [CategoriasController::class, 'index']);
-Route ::get('/categoria/{idCategorias}', [CategoriasController::class, 'view']);
+Route::get('/direcciones', [DireccionesController::class, 'index'])->name('direcciones.index');
+Route::get('/direcciones/create', [DireccionesController::class, 'create'])->name('direcciones.create');
+Route::post('/direcciones', [DireccionesController::class, 'store'])->name('direcciones.store');
+Route::delete('/direcciones/{id}', [DireccionesController::class, 'destroy'])->name('direcciones.destroy');
 
-Route ::get('/Sucursales', [SucursalesController::class, 'index']);
-Route ::get('/carrito/agregar/{idProductos}', [CarritoController::class, 'agregar']);
-Route ::get('/carrito/eliminar/{idProductos}', [CarritoController::class, 'eliminar']);
+Route::get('/categorias', [CategoriasController::class, 'index']);
+Route::get('/categoria/{idCategorias}', [CategoriasController::class, 'view']);
+
+Route::get('/Sucursales', [SucursalesController::class, 'index']);
+
+Route::post('/carrito/agregar/{idProductos}', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+Route::delete('/carrito/eliminar/{idProductos}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+
+Route::get('/carrito/agregar/{idProductos}', [CarritoController::class, 'agregar']);
+Route::get('/carrito/eliminar/{idProductos}', [CarritoController::class, 'eliminar']);
+
+Route::get('/carrito', [CarritoController::class, 'mostrarCarrito'])->name('carrito');
+
+/*Route::post('/carrito/gracias', [CarritoController::class, 'mostrarAgradecimiento'])->name('carrito.gracias');
+Route::post('/carrito/procesarPago', [CarritoController::class, 'procesarPago'])->name('carrito.procesarPago');*/
+Route::post('/carrito/gracias', [CarritoController::class, 'procesarPagoYGracias'])->name('carrito.procesarPagoYGracias');
+Route::get('/mis-views/gracias', [CarritoController::class, 'mostrarAgradecimiento'])->name('mis-views.gracias');
+
+
+
+
 
 /*Route ::get('/Direcciones', [DireccionesController::class, 'index']);*/
-Route ::get('/Detalles/{idProductos}', [CategoriasController::class, 'detalles']);
+Route::get('/Detalles/{idProductos}', [CategoriasController::class, 'detalles']);
 
-Route ::get('/Paypal', [PaypalController::class, 'pago']);
+/*Route ::get('/carrito/pago', [PaypalController::class, 'pago'])->name('carrito.pago');*/
 
 /*Route::post('/store/cart-add', [App\Http\CarritoController::class, 'add'])->name('cart.add');*/
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 ?>

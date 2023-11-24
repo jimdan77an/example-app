@@ -1,16 +1,18 @@
 <?php
 namespace App\Http\Controllers;
+
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
+
 class ContactoController extends BaseController
 {
     public function index()
     {
         return view('mis-views.contacto');
     }
-   
+
     public function send(Request $request)
     {
         $request->validate([
@@ -18,13 +20,13 @@ class ContactoController extends BaseController
             'email' => 'required|email',
             'mensaje' => 'required',
         ]);
-        
-       
+
+
         Mail::send(new ContactanosMailable($request->input()));
 
-        
-        return redirect(route('contactado'), 302);   
-       
+
+        return redirect(route('contactado'), 302);
+
     }
     /*public function recibir(){
         $request([
@@ -32,7 +34,8 @@ class ContactoController extends BaseController
             $email => 'sbhiaedla77@gmail.com',
         ]);    
     }*/
-    public function contacted(){
+    public function contacted()
+    {
         return view('mis-views.contactado');
     }
 }

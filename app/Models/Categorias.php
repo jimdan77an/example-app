@@ -12,7 +12,8 @@ class Categorias extends Model
     use HasFactory;
     protected $table = 'categorias';
 
-    public function productos (){
-        return $this -> hasMany(productos::class, 'idCategorias', 'idCategorias');
+    public function productos()
+    {
+        return $this->hasMany(productos::class, 'idCategorias', 'idCategorias');
     }
 }

@@ -8,7 +8,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <script src="https://kit.fontawesome.com/2137beee47.js" crossorigin="anonymous"></script>
-    <title>Sucursales</title>
+    <title>Gracias</title>
     <link rel="stylesheet" href="http://localhost/example-app/public/css/estilos.css" media="all" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -29,7 +29,6 @@
             <li><a href="/categorias">Inicio</a></li>
 
             <li><a href="/categorias">Categorías</a>
-
             </li>
             <li><a href="/contacto">Contactos</a></li>
             <li><a href="#">Sucursales</a>
@@ -42,20 +41,22 @@
             @endauth
         </ul>
     </nav>
-    <div class="full-container">
-        <div class="header">
-            <h1> Nuestras Sucursales </h1>
-        </div>
-        <div class="Cuerpo">
-            @foreach($sucursales as $sucursal)
-            <h1> {{$sucursal->Nombre}}</h1></br></br>
-            <iframe width="600" height="450" style="border:0" loading="lazy" allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBMznw6Z7nd2ODWJv8WnYuE_MiAujSmLUc&q={{$sucursal->Latitud}},{{$sucursal->Longitud}}">
-            </iframe>
-            @endforeach
-        </div>
+    <h1>Compra realizada con éxito</h1>
+    <p>{{ session('mensaje') }}</p>
+    <div class="col-sm-6 col-md-6 col-lg-6 comprar">
+        <a href="/categorias">Comprar más</a>
     </div>
+    <div id="background-wrap">
+        <div class="bubble x1"></div>
+        <div class="bubble x2"></div>
+        <div class="bubble x3"></div>
+        <div class="bubble x4"></div>
+        <div class="bubble x5"></div>
+        <div class="bubble x6"></div>
+        <div class="bubble x7"></div>
+        <div class="bubble x8"></div>
+        <div class="bubble x9"></div>
+        <div class="bubble x10"></div>
 </body>
 
 </html>

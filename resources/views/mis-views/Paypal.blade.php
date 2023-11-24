@@ -30,9 +30,7 @@
 <body>
     <nav>
     <ul class = "menu-h">
-            <li><a href="/login">Iniciar Sesión</a></li>
-            <li><a href="/register">Registrarse</a></li> 
-            <li><a href="#">Inicio</a></li>
+            <li><a href="/categorias">Inicio</a></li>
             
             <li><a href="/categorias">Categorías</a>
             </li>
@@ -93,7 +91,7 @@
         <br>
         </div>
         <div class="productos">
-            <a href="http://localhost/example-app/resources/views/mis-views/categoria.blade.php#">Regresar</a>
+            <a href="/carrito">Regresar</a>
         </div>
     </center>
 

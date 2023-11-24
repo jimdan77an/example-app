@@ -7,8 +7,9 @@ use App\Models\Sucursales;
 
 class SucursalesController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $sucursales = Sucursales::all();
-        return view ('mis-views.Sucursales',['sucursales'=>$sucursales]);
-     }
+        return view('mis-views.Sucursales', ['sucursales' => $sucursales]);
+    }
 }

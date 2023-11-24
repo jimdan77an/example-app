@@ -7,8 +7,9 @@ use App\Models\Registro;
 
 class RegistroController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $Registro = Registro::all();
-        return view ('mis-views.registrar',['registrar'=>$Registro]);
-     }
+        return view('mis-views.registrar', ['registrar' => $Registro]);
+    }
 }

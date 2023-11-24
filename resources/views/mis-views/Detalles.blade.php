@@ -1,109 +1,84 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset = "utf-8">
-		<title>Welcome</title>
-		<link rel="stylesheet" href="http://localhost/example-app/public/css/estilos.css" media="all"/>
-	</head>	
-    <!--<style>
-        html {
-            height: 100%;
-        }
-        body {
-            height: auto;
-            background: rgb(55,0,70);
-            background: linear-gradient(0deg, rgba(55,0,70,1) 0%, rgba(234,174,241,1) 100%);
-            position: relative;
-        }
-        nav {
-            position: relative;
-            text-align: center;
-            color: #252B37;
-            background-color: #151823;
-            animation: textColor 10s ease infinite;
-        }
-        nav:after {
-            position: absolute;
-            content: "";
-            top: 5vw;
-            left: 0;
-            right: 0;
-            z-index: -1;
-            height: 100%;
-            width: 100%;
-            margin: 0 auto;
-            transform: scale(0.75);
-            -webkit-filter: blur(5vw);
-            -moz-filter: blur(5vw);
-            -ms-filter: blur(5vw);
-            filter: blur(5vw);
-            background: linear-gradient(270deg, #0fffc1, #7e0fff);
-            background-size: 200% 200%;
-            animation: animateGlow 10s ease infinite;
-        }
-        @keyframes animateGlow {
-        0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
-        }
-        @keyframes textColor {
-        0% {
-            color: #7e0fff;
-        }
-        50% {
-            color: #0fffc1;
-        }
-        100% {
-            color: #7e0fff;
-        }
-        }
-    </style>-->    
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <script src="https://kit.fontawesome.com/2137beee47.js" crossorigin="anonymous"></script>
+    <title>Detalles</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="http://localhost/example-app/public/css/estilos.css" media="all" />
+</head>
+
 <body>
+    @auth
+    <div class="nav">
+        <a href="/carrito"><i class="fa-solid fa-cart-plus" style="color: #f500b4;"></i></a>
+    </div>
+    @endauth
     <nav>
-    <ul class = "menu-h">
+        <ul class="menu-h">
+            @guest
             <li><a href="/login">Iniciar Sesión</a></li>
-            <li><a href="/register">Registrarse</a></li> 
+            <li><a href="/register">Registrarse</a></li>
+            @endguest
             <li><a href="/categorias">Inicio</a></li>
-            
-            <li><a href="/categoria">Categorías</a>
+
+            <li><a href="/categorias">Categorías</a>
             </li>
             <li><a href="/contacto">Contactos</a></li>
             <li><a href="#">Sucursales</a>
-            <ul class="menu-v">
-            <li><a href="/Sucursales">Geolocalización</a>
-            </ul>  
+                <ul class="menu-v">
+                    <li><a href="/Sucursales">Geolocalización</a>
+                </ul>
             </li>
-        </ul>      
+            @auth
+            <li><a href="/direcciones">Direcciones</a></li>
+            @endauth
+        </ul>
     </nav>
-    <div class ="container">
-        <div class="row">
-            <h1 style="color: #880E4F;">{{$Producto->nombre}}</h1>
-            <p>{{$Producto->detalles}}</p>
-            <img src="{{$Producto->imagen}}" />
-            
-   @auth
-        {{$cantidad}}
-        @if($cantidad>0)
-
-            <a href="/carrito/agregar/{{$Producto->idProductos}}"><button>
-                   +
-                </button></a>
-            <a href="/carrito/eliminar/{{$Producto->idProductos}}"><button>-</button></a>
-        @else
-            <a href="/carrito/agregar/{{$Producto->idProductos}}"><button>
-                +
-            </button></a>
-        @endif
-
-    @endauth 
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 style="color: #880E4F;">{{$Producto->nombre}}</h1>
+                <p>{{$Producto->detalles}}</p>
+                <div class="img-nav">
+                    <img src="data:image/jpg;base64,{{ base64_encode($Producto->imagen) }}" class="rounded"
+                        alt="Imagen del producto"></br></br>
+                </div>
+            </div>
         </div>
-    </div> 
-   
-</body>	    
+
+        @auth
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                {{$cantidad}}
+                @if($cantidad > 0)
+                <div class="btn-group">
+                    <a href="/carrito/agregar/{{$Producto->idProductos}}" class="btn btn-success">
+                        <i class="fas fa-plus"></i> Agregar
+                    </a>
+                    <a href="/carrito/eliminar/{{$Producto->idProductos}}" class="btn btn-danger">
+                        <i class="fas fa-minus"></i> Eliminar
+                    </a>
+                </div>
+                @else
+                <a href="/carrito/agregar/{{$Producto->idProductos}}" class="btn btn-success">
+                    <i class="fas fa-plus"></i> Agregar al Carrito
+                </a>
+                @endif
+                <a href="/carrito" class="btn btn-dark">
+                    <i class="fas fa-shopping-cart"></i> Ver Carrito
+                </a>
+            </div>
+        </div>
+        @endauth
+    </div>
+
+</body>
+
 </html>
