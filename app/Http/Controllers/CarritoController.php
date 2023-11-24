@@ -55,22 +55,22 @@ class CarritoController extends Controller
         return view('mis-views.carrito', ['detalles' => $detalles, 'carrito' => $carrito, 'total' => $total, 'direcciones' => $direcciones]);
     }
     public function procesarPagoYGracias(Request $request)
-    {
-        $idUsuario = Auth::id();
-        $carrito = Carrito::obtenerCarrito($idUsuario);
+{
+    $idUsuario = Auth::id();
+    $carrito = Carrito::obtenerCarrito($idUsuario);
 
-        $detalles = DetalleCarrito::where('idCarritos', $carrito->idCarrito)->get();
+    $detalles = DetalleCarrito::where('idCarritos', $carrito->idCarrito)->get();
 
-        $totalPagar = $detalles->sum(function ($detalle) {
-            return $detalle->cantidad * $detalle->precio;
-        });
+    $totalPagar = $detalles->sum(function ($detalle) {
+        return $detalle->cantidad * $detalle->precio;
+    });
 
-        DetalleCarrito::where('idCarritos', $carrito->idCarrito)->delete();
-        $carrito->delete();
+    $carrito->estado = 'PROCESANDO';
+    $carrito->save();
 
-        // Redirigir al usuario a la vista de agradecimiento con un mensaje
-        return redirect()->route('mis-views.gracias')->with('mensaje', 'Gracias por su compra. Total pagado: Q' . $totalPagar);
-    }
+    return redirect()->route('mis-views.gracias')->with('mensaje', 'Gracias por su compra. Total pagado: Q' . $totalPagar);
+}
+
     public function mostrarAgradecimiento()
     {
         return view('mis-views.gracias');
