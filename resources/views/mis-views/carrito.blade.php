@@ -135,6 +135,7 @@
     </div>
     @else
     <p>El carrito está vacío.</p>
+    <a href="/categorias">Comprar</a>
     @endif
 </body>
 

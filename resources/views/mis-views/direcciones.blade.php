@@ -77,6 +77,8 @@
         </table>
         @else
         <p>No hay direcciones disponibles.</p>
+        <a href="{{ route('direcciones.create') }}" class="btn btn-success">Agregar Nueva
+            Dirección</a></td>
         @endif
 </body>
 
