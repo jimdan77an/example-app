@@ -10,7 +10,9 @@ class ContactoController extends BaseController
 {
     public function index()
     {
-        return view('mis-views.contacto');
+        return view('mis-views.contacto',
+        ['name'=> 'Heidi']
+    );
     }
 
     public function send(Request $request)
@@ -22,7 +24,8 @@ class ContactoController extends BaseController
         ]);
 
 
-        Mail::send(new ContactanosMailable($request->input()));
+        $name = 'Heidi';
+        Mail::to('sbhiaedla77@gmail.com')->send(new ContactanosMailable($name));
 
 
         return redirect(route('contactado'), 302);

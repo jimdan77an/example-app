@@ -40,7 +40,9 @@
             @endauth
         </ul>
     </nav>
+    <h1>{{ __('messages.welcome', ['name' => $name]) }}</h1>
     <h1> Contáctanos </h1>
+    <p>{{ __('messages.please_fill', ['name' => $name]) }}</p>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
