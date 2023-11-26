@@ -8,6 +8,7 @@ use App\Http\Controllers\SucursalesController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\DireccionesController;
+use App\Http\Controllers\NASAController;
 use App\Http\Controllers\CarritoController;
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
@@ -34,6 +35,9 @@ Route::get('/mi-primer-controller/{texto}', [PrimerController::class, 'indexWith
 Route::get('/vista-layout', function () {
     return view('mis-views/layout');
 });
+
+
+Route::get('/nasa-request', [NASAController::class, 'makeRequest']);
 
 
 Route::get('/dashboard', function () {
@@ -89,6 +93,10 @@ Route::get('/Detalles/{idProductos}', [CategoriasController::class, 'detalles'])
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
+
 
 require __DIR__ . '/auth.php';
 ?>

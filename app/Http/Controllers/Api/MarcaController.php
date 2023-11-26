@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class MarcaController extends Controller
 {
-    /**
+    /*
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -18,7 +18,7 @@ class MarcaController extends Controller
         //
     }
 
-    /**
+    /*
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -28,7 +28,7 @@ class MarcaController extends Controller
         //
     }
 
-    /**
+    /*
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -39,7 +39,7 @@ class MarcaController extends Controller
         //
     }
 
-    /**
+    /*
      * Display the specified resource.
      *
      * @param  \App\Models\Marca  $marca
@@ -50,7 +50,7 @@ class MarcaController extends Controller
         return $marca->toArray();
     }
 
-    /**
+    /*
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Marca  $marca
@@ -61,7 +61,7 @@ class MarcaController extends Controller
         //
     }
 
-    /**
+    /*
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -73,7 +73,7 @@ class MarcaController extends Controller
         //
     }
 
-    /**
+    /*
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Marca  $marca
